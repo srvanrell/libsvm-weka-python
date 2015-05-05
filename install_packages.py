@@ -13,7 +13,7 @@ for item in installed_packages:
 # Search for GridSearch and LibSVM
 all_packages = packages.all_packages()
 for item in all_packages:
-    if item.get_name() == "gridSearch" or item.get_name() == "LibSVM":
+    if (item.name == "gridSearch") or (item.name == "LibSVM"):
         print(item.name + " " + item.url)
 
 # packages.install_package("Name")
