@@ -18,7 +18,7 @@ trainData.class_is_last()
 classifier = Classifier(classname="weka.classifiers.functions.LibSVM",\
                     options=["-S", "0", "-K", "2", "-Z", "-G", "0.0", "-C", "1.0",
                              "-D", "3", "-R", "0.0", "-N", "0.5", "-M", "40.0",
-                             "-E", "0.001", "-P", "0.1", "-model", "/home/sebastian", "-seed", "1"])
+                             "-E", "0.001", "-P", "0.1", "-model", "~/", "-seed", "1"])
 
 # Logaritmic grid search on C and gamma, with cross validation (mandatory) on the training set
 grid = SingleClassifierEnhancer(
