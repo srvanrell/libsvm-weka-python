@@ -3,6 +3,7 @@
 
 import weka.core.jvm as jvm
 import weka.core.packages as packages
+import sys
 
 jvm.start()
 
@@ -16,10 +17,13 @@ for item in all_packages:
     if (item.name == "gridSearch") or (item.name == "LibSVM"):
         print(item.name + " " + item.url)
 
+sys.stdout.flush()
 # packages.install_package("Name")
 # packages.uninstall_package("Name")
 
 # To install MultiSearch
-packages.install_package("http://github.com/fracpete/multisearch-weka-package/releases/download/v2014.12.10/multisearch-2014.12.10.zip")
+jvm.[""]
+
+packages.install_package("https://github.com/fracpete/multisearch-weka-package/releases/download/v2014.12.10/multisearch-2014.12.10.zip")
 
 jvm.stop()
