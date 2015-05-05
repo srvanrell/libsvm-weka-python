@@ -22,8 +22,6 @@ sys.stdout.flush()
 # packages.uninstall_package("Name")
 
 # To install MultiSearch
-jvm.[""]
-
 packages.install_package("https://github.com/fracpete/multisearch-weka-package/releases/download/v2014.12.10/multisearch-2014.12.10.zip")
 
 jvm.stop()
