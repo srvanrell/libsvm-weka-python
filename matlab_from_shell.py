@@ -10,6 +10,6 @@ magica = magic(5)
 """)
 mfile.close()
 
-os.system("matlab -nojvm < test.m > salida.txt 2> error.txt")
+os.system("matlab -nojvm < {0:s} > salida.txt 2> error.txt".format(mfilename))
 
 os.remove(mfilename)
