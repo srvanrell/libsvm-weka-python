@@ -8,7 +8,7 @@ Check repo at https://github.com/fracpete/python-weka-wrapper or documentation p
 Description of installed packages:
 * weka 3.7.12 installed automatically with python-weka-wrapper (original site: http://www.cs.waikato.ac.nz/ml/weka/)
 * LibSVM 1.0.6 (wrapper for weka) installed with weka's package manager
-* GridSearch 1.0.8 installed with with's package manager
+* GridSearch 1.0.8 installed with weka's package manager
 * MultiSearch 2014.12.10 (not official package) installed from latest release at https://github.com/fracpete/multisearch-weka-package/releases
 
 
