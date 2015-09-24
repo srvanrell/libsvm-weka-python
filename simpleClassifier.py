@@ -3,8 +3,7 @@
 
 import weka.core.jvm as jvm
 from weka.core.converters import Loader
-from weka.classifiers import Classifier, Evaluation, SingleClassifierEnhancer
-import javabridge
+from weka.classifiers import Classifier, Evaluation
 
 jvm.logger.setLevel(jvm.logging.WARNING)
 jvm.start(packages=True, max_heap_size="512m")
