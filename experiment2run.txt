@@ -1,0 +1,2 @@
+/home/svanrell/libsvm-weka-python
+python simpleClassifier.py > salida-simpleClassifier.txt 2> error-simpleClassifier.txt
