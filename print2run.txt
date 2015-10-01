@@ -1,0 +1,2 @@
+/home/svanrell/libsvm-weka-python
+python simplePrint.py > salida-simplePrint.txt 2> error-simplePrint.txt
