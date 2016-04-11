@@ -1,10 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""
+Script to test that needed package are correctly installed
+Tested with:
+- python-weka-wrapper 3.6.0
+- LibSVM 1.0.6
+- MultiSearch 2016.1.30
+"""
 
 import weka.core.jvm as jvm
 from weka.core.converters import Loader
-from weka.classifiers import Classifier, Evaluation, SingleClassifierEnhancer
-import javabridge
+from weka.classifiers import Classifier, MultiSearch, Evaluation
+from weka.core.classes import MathParameter
 
 jvm.logger.setLevel(jvm.logging.WARNING)
 jvm.start(packages=True, max_heap_size="512m")
@@ -22,30 +29,35 @@ classifier = Classifier(classname="weka.classifiers.functions.LibSVM",
                                  "-D", "3", "-R", "0.0", "-N", "0.5", "-M", "40.0",
                                  "-E", "0.001", "-P", "0.1", "-model", "~/", "-seed", "1"])
 
-# Logaritmic grid search on C and gamma, without cross validation on the training set
-grid = SingleClassifierEnhancer(
-    classname="weka.classifiers.meta.MultiSearch",
-    options=[
-        "-E", "ACC",
-        "-search", 'weka.core.setupgenerator.MathParameter -property classifier.cost -min -3.0 -max 5.0 -step 1.0 -base 10.0 -expression "pow(BASE,I)"',
-        "-search", 'weka.core.setupgenerator.MathParameter -property classifier.gamma -min -3.0 -max 5.0 -step 1.0 -base 10.0 -expression "pow(BASE,I)"',
-        "-output-debug-info",
-        "-initial-folds", "2", "-subsequent-folds", "3",
-        "-W", "weka.classifiers.trees.J48",  # dummy classifier added to avoid Nominal Class Capability Exception
-        "-sample-size", "100.0", "-num-slots", "8", "-S", "1"])
+# Logarithmic grid search on C and gamma, without cross validation on the training set
+gamma = MathParameter()
+gamma.prop = "classifier.gamma"
+gamma.minimum, gamma.maximum, gamma.step, gamma.base = -3.0, 5.0, 1.0, 10.0
+gamma.expression = "pow(BASE,I)"
+
+cost = MathParameter()
+cost.prop = "classifier.cost"
+cost.minimum, cost.maximum, cost.step, cost.base = -3.0, 5.0, 1.0, 10.0
+cost.expression = "pow(BASE,I)"
+
+grid = MultiSearch(options=["-sample-size", "100.0", "-num-slots", "8", "-S", "1",
+                            "-initial-folds", "2", "-subsequent-folds", "3",
+                            "-output-debug-info"
+                            ])
+grid.classifier = classifier
+grid.evaluation = "ACC"
+grid.parameters = [gamma, cost]
 
 # LibSVM is added to grid configuration
 grid.classifier = classifier
 # Search for the best parameters and build a classifier with them
 grid.build_classifier(trainData)
-best = Classifier(jobject=javabridge.call(grid.jobject, "getBestClassifier", "()Lweka/classifiers/Classifier;"))
+best = grid.best
 best.build_classifier(trainData)
 
 print best.options
 print "C", best.options[best.options.index("-C")+1]
 print "gamma", best.options[best.options.index("-G")+1]
-# TODO install new release 3.0.1 and use new method to define a finer grid
-
 
 print "\n\n=========== Train results ================\n\n"
 print grid
