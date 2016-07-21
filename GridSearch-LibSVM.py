@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-Script to test that needed package are correctly installed
+Script to test that needed packages are correctly installed
 Tested with:
-- python-weka-wrapper 3.6.0
-- LibSVM 1.0.6
+- python-weka-wrapper 0.3.8
+- LibSVM 1.0.8
+- GridSearch 1.0.9
 """
 
 import weka.core.jvm as jvm

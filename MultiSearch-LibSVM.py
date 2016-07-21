@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-Script to test that needed package are correctly installed
+Script to test that needed packages are correctly installed
 Tested with:
-- python-weka-wrapper 3.6.0
+- python-weka-wrapper 0.3.8
 - LibSVM 1.0.6
-- MultiSearch 2016.1.30
+- MultiSearch 2016.6.7
 """
 
 import weka.core.jvm as jvm
@@ -31,12 +31,12 @@ classifier = Classifier(classname="weka.classifiers.functions.LibSVM",
 
 # Logarithmic grid search on C and gamma, without cross validation on the training set
 gamma = MathParameter()
-gamma.prop = "classifier.gamma"
+gamma.prop = "gamma"
 gamma.minimum, gamma.maximum, gamma.step, gamma.base = -3.0, 5.0, 1.0, 10.0
 gamma.expression = "pow(BASE,I)"
 
 cost = MathParameter()
-cost.prop = "classifier.cost"
+cost.prop = "cost"
 cost.minimum, cost.maximum, cost.step, cost.base = -3.0, 5.0, 1.0, 10.0
 cost.expression = "pow(BASE,I)"
 
