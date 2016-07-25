@@ -4,7 +4,7 @@
 Script to test that needed packages are correctly installed
 Tested with:
 - python-weka-wrapper 0.3.8
-- LibSVM 1.0.6
+- LibSVM 1.0.8
 - MultiSearch 2016.6.7
 """
 
@@ -27,7 +27,7 @@ testData.class_is_last()
 classifier = Classifier(classname="weka.classifiers.functions.LibSVM",
                         options=["-S", "0", "-K", "2", "-Z", "-G", "0.0", "-C", "1.0",
                                  "-D", "3", "-R", "0.0", "-N", "0.5", "-M", "40.0",
-                                 "-E", "0.001", "-P", "0.1", "-model", "~/", "-seed", "1"])
+                                 "-E", "0.001", "-P", "0.1", "-model", "/home", "-seed", "1"])
 
 # Logarithmic grid search on C and gamma, without cross validation on the training set
 gamma = MathParameter()
