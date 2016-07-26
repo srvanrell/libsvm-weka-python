@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
 """
 Script to test that needed packages are correctly installed
 Tested with:
@@ -55,23 +54,23 @@ grid.build_classifier(trainData)
 best = grid.best
 best.build_classifier(trainData)
 
-print best.options
-print "C", best.options[best.options.index("-C")+1]
-print "gamma", best.options[best.options.index("-G")+1]
+print(best.options)
+print("C", best.options[best.options.index("-C")+1])
+print("gamma", best.options[best.options.index("-G")+1])
 
-print "\n\n=========== Train results ================\n\n"
-print grid
+print("\n\n=========== Train results ================\n\n")
+print(grid)
 evaluation = Evaluation(trainData)
 evaluation.test_model(best, trainData)
-print best.to_commandline()
-print evaluation.matrix()
-print "Train recognition: %0.2f%%" % evaluation.percent_correct
+print(best.to_commandline())
+print(evaluation.matrix())
+print("Train recognition: %0.2f%%" % evaluation.percent_correct)
 
-print "\n\n=========== Test results ================\n\n"
+print("\n\n=========== Test results ================\n\n")
 evaluation = Evaluation(testData)
 evaluation.test_model(best, testData)
-print best.to_commandline()
-print evaluation.matrix()
-print "Test recognition: %0.2f%%" % evaluation.percent_correct
+print(best.to_commandline())
+print(evaluation.matrix())
+print("Test recognition: %0.2f%%" % evaluation.percent_correct)
 
 jvm.stop()
