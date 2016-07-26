@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
 """
 Script to test that needed packages are correctly installed
 Tested with:
@@ -41,13 +40,13 @@ grid.build_classifier(trainData)
 best = grid.best
 best.build_classifier(trainData)
 
-print grid
-print best
+print(grid)
+print(best)
 
 # Evaluation on train dataset just to simplify this example
 evaluation = Evaluation(trainData)
 evaluation.test_model(best, trainData)
-print best.to_commandline()
-print evaluation.matrix()
+print(best.to_commandline())
+print(evaluation.matrix())
 
 jvm.stop()
